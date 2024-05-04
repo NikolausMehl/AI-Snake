@@ -1,0 +1,31 @@
+#container {
+    max-width: 800px; /* sets a max width for the container */
+    margin: 0 auto; /* centers the container horizontally */
+}
+
+#gameBoard {
+    background-color: #1a202c;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.snake, .food, .obstacle {
+    width: 25px;
+    height: 28px;
+    background-color: transparent;
+    position: absolute;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+#footer {
+    margin-top: 1rem;
+}
+
+#modal {
+    z-index: 9999;
+}
+
+    #modal .bg-white {
+        width: 300px;
+    }

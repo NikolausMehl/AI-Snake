@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="container" class="flex flex-col justify-center items-center h-screen bg-gray-900 text-white">
+    <div id="header" class="w-3/4 flex justify-between items-center px-4 mt-4">
+        <h1 class="text-3xl font-bold">
+            <span style="color: #FF5733">s</span>
+            <span style="color: #65C9FF">n</span>
+            <span style="color: #FFD738">-</span>
+            <span style="color: #68EDC6">A</span>
+            <span style="color: #E487AE">I</span>
+            <span style="color: #A383E4">-</span>
+            <span style="color: #FFD738">k</span>
+            <span style="color: #54D164">e</span>
+        </h1>
+        <p class="text-lg font-semibold">Score: <span id="score">0</span></p>
+    </div>
+    <div id="gameBoard" class="relative w-3/4 h-0" style="padding-bottom: 75%"></div>
+    <div id="footer" class="lg:block text-center w-3/4 mt-4">
+        <h2 class="text-xl font-semibold">Game Instructions:</h2>
+        <p>Use arrow keys to control the snake.</p>
+        <p>Eat the food to score points.</p>
+        <p>Avoid running into obstacles or the snake itself.</p>
+    </div>
+    <div id="modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-8 rounded shadow-lg text-center">
+            <h2 class="text-2xl font-bold text-red-500">Game Over</h2>
+            <button id="restartButtonModal" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Restart</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
