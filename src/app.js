@@ -48,13 +48,14 @@ function addFood() {
 
     var isCollision = true;
     while (isCollision) {
-        foodX = Math.floor(Math.random() * 20) * 20;
-        foodY = Math.floor(Math.random() * 20) * 20;
+        // Calculate random position within the boundaries of the game board
+        foodX = Math.floor(Math.random() * (gameBoard.clientWidth / 20)) * 20;
+        foodY = Math.floor(Math.random() * (gameBoard.clientHeight / 20)) * 20;
         isCollision = obstacles.some(obstacle => obstacle.x === foodX && obstacle.y === foodY)
             || snake.some(segment => segment.x === foodX && segment.y === foodY);
     }
 
-    food.strength = (randomValue < 0.70) ? 1 : 3; 
+    food.strength = (randomValue < 0.70) ? 1 : 3;
     food.x = foodX;
     food.y = foodY;
 
