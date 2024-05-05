@@ -1,7 +1,10 @@
 FROM nginx:latest
 
-# Copy the website contents to the container
-COPY src /usr/share/nginx/html/
+# Install git
+RUN apt-get update && apt-get install -y git
+
+# Clone the repository
+RUN git clone https://github.com/NikolausMehl/AI-Snake.git /usr/share/nginx/html/
 
 # Set the default root directory for the website
 WORKDIR /usr/share/nginx/html/
