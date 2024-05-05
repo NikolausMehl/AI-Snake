@@ -181,7 +181,43 @@ function mainLoop() {
 }
 
 document.addEventListener('keydown', e => {
-    switch (e.key) {
+    handleKeyPress(e.key);
+});
+
+// Add touch event listeners
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    e.preventDefault();
+});
+
+document.addEventListener('touchmove', e => {
+    if (!touchStartX || !touchStartY) return;
+
+    const touchEndX = e.touches[0].clientX;
+    const touchEndY = e.touches[0].clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    // Determine swipe direction
+    if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) handleKeyPress('ArrowRight');
+        else handleKeyPress('ArrowLeft');
+    } else {
+        if (dy > 0) handleKeyPress('ArrowDown');
+        else handleKeyPress('ArrowUp');
+    }
+
+    touchStartX = 0;
+    touchStartY = 0;
+});
+
+function handleKeyPress(key) {
+    switch (key) {
         case 'ArrowUp':
             if (dy === 0) {
                 dx = 0;
@@ -207,7 +243,7 @@ document.addEventListener('keydown', e => {
             }
             break;
     }
-});
+}
 
 function restartGame() {
     snake = [{ x: 200, y: 200 }, { x: 180, y: 200 }, { x: 160, y: 200 }];
