@@ -152,6 +152,7 @@ function checkCollision(position1, position2) {
 function endGame() {
     gameOver = true;
     document.getElementById('modal').classList.remove('hidden');
+    document.body.style.overflow = 'auto';
 }
 
 function eatFood() {
@@ -161,6 +162,7 @@ function eatFood() {
 }
 
 function startGame() {
+    document.body.style.overflow = 'hidden';
     drawSnake();
     addFood();
     mainLoop();
