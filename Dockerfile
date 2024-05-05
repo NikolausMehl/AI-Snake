@@ -3,11 +3,14 @@ FROM nginx:latest
 # Install git
 RUN apt-get update && apt-get install -y git
 
-# Clone the repository
-RUN git clone https://github.com/NikolausMehl/AI-Snake.git /usr/share/nginx/html/
+# Clone the repository into a temporary directory
+RUN git clone https://github.com/NikolausMehl/AI-Snake.git /tmp/AI-Snake
 
-# Set the default root directory for the website
-WORKDIR /usr/share/nginx/html/
+# Copy the contents of the repository to the default NGINX directory
+RUN cp -a /tmp/AI-Snake/. /usr/share/nginx/html/
+
+# Cleanup temporary directory
+RUN rm -rf /tmp/AI-Snake
 
 # Expose port 80 for HTTP traffic
 EXPOSE 80
