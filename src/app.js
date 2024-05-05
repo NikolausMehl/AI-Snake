@@ -163,6 +163,10 @@ function eatFood() {
 
 function startGame() {
     document.body.style.overflow = 'hidden';
+    restartButton.addEventListener('click', () => {
+        endGameModal.classList.add('hidden');
+        restartGame();
+    });
     drawSnake();
     addFood();
     mainLoop();
@@ -259,12 +263,29 @@ function restartGame() {
     gameBoard.querySelectorAll('.snake').forEach(element => element.remove());
     gameBoard.querySelectorAll('.food').forEach(element => element.remove());
     gameBoard.querySelectorAll('.obstacle').forEach(element => element.remove());
-    startGame();
+    drawSnake();
+    addFood();
+    mainLoop();
 }
 
-restartButton.addEventListener('click', () => {
-    endGameModal.classList.add('hidden');
-    restartGame();
-});
+function adjustGameBoardSize() {
+    // Calculate the size of the game board based on the viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const minDimension = Math.min(viewportWidth, viewportHeight);
+
+    // Calculate the size of each cell (20px) and adjust the game board size accordingly
+    const cellSize = 20;
+    const rows = Math.floor(minDimension / cellSize);
+    const cols = Math.floor(viewportWidth / cellSize);
+
+    // Set the size of the game board
+    gameBoard.style.width = `${cols * cellSize}px`;
+    gameBoard.style.height = `${rows * cellSize}px`;
+}
+
+// Call the function to adjust the game board size initially and whenever the window is resized
+adjustGameBoardSize();
+window.addEventListener('resize', adjustGameBoardSize);
 
 startGame(); 
