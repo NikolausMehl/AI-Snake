@@ -72,10 +72,15 @@ function addObstacle() {
     if (score % (Math.floor(Math.random() * 6) + 3) !== 0) return;
 
     let obstacleX, obstacleY;
-    do {
-        obstacleX = Math.floor(Math.random() * 20) * 20;
-        obstacleY = Math.floor(Math.random() * 20) * 20;
-    } while (snake.some(segment => segment.x === obstacleX && segment.y === obstacleY));
+    let randomValue = Math.random();
+
+    var isCollision = true;
+    while (isCollision) {
+        // Calculate random position within the boundaries of the game board
+        obstacleX = Math.floor(Math.random() * (gameBoard.clientWidth / 20)) * 20;
+        obstacleY = Math.floor(Math.random() * (gameBoard.clientHeight / 20)) * 20;
+        isCollision = snake.some(segment => segment.x === obstacleX && segment.y === obstacleY);
+    }
 
     const obstacle = {
         x: obstacleX,
